@@ -11,6 +11,34 @@ DB 앞단에 hot-spot 성격의 데이터를 캐싱
   
 cache node list 변경을 아커스 클라이언트에게 실시간으로 알리기 위해서 주키퍼를 사용  
 
+arcus memcached
+
+실제 데이터가 저장되는 캐시 역할 
+아커스 memcached 서버가 start/stop 될 때, zookeeper 에 notify
+문제가 발생한 아커스 memcached 는 스스로 중지
+arcus zookeeper
+
+zookeeper 는 service_code 를 이용하여 memcached 그룹을 관리함
+service_code 로 묶인 memcached 그룹의 변화가 생기면 아커스 클라이언트에 notify
+ex) memcached 서버 중지 
+아커스 memcached 서버 주기적으로 확인
+arcus client
+
+arcus memcached
+
+실제 데이터가 저장되는 캐시 역할 
+아커스 memcached 서버가 start/stop 될 때, zookeeper 에 notify
+문제가 발생한 아커스 memcached 는 스스로 중지
+arcus zookeeper
+
+zookeeper 는 service_code 를 이용하여 memcached 그룹을 관리함
+service_code 로 묶인 memcached 그룹의 변화가 생기면 아커스 클라이언트에 notify
+ex) memcached 서버 중지 
+아커스 memcached 서버 주기적으로 확인
+arcus client
+
+
+
 ## 구성도
 아커스 서버 (memcached)
 - 캐시 데이터 저장소
@@ -21,7 +49,7 @@ cache node list 변경을 아커스 클라이언트에게 실시간으로 알리
 - 서비스 코드 별로 아커스 서버 목록을 관리하고 변경이 있을때 클라이언트에 통지 (서버 노드 추가/제거)
 - 아커스 서버와의 세션이 만료되면 아커스 서버 목록에서 해당 서버을 제거
 - 서비스 코드를 이용해서 memcached (아커스 서버) 서버를 관리 
-- 주키퍼는 아커스 서버들이 살아 있는지 주기적으로 확인하여 아커스 클라이언트에 
+- 주키퍼는 아커스 서버들이 살아 있는지 주기적으로 확인하여 아커스 클라이언트에 알림 
 
 아커스 클라이언트
 - 주키퍼로부터 서비스 코드에 할당된 사용가능한 아커스 서버 목록을 받아옴

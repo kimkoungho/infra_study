@@ -179,7 +179,7 @@ $ sudo vi /root/.ssh/authorized_keys
 ```
 
 ### 설정 파일 생성
-[설정 파일 생성 가이드](https://github.com/naver/arcus/blob/master/docs/arcus-cloud-configuration-file.mdhttps://github.com/naver/arcus/blob/master/docs/arcus-cloud-configuration-file.md) 에서 처럼 파일을 생성하자  
+[설정 파일 생성 가이드](https://github.com/naver/arcus/blob/master/docs/arcus-cloud-configuration-file.md) 에서 처럼 파일을 생성하자  
 ```shell script
 $ ls -l /home/arcus/scripts/conf
 -rw-r--r-- 1 root root  8219  5월 25 10:07 local.100node.json
