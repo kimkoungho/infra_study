@@ -586,6 +586,8 @@ https://docs.ansible.com/ansible/latest/reference_appendices/config.html#ansible
 
 ansible.cfg 는 명령어를 실행하는 디렉토리로 이동해서 실행해햐 함 ... 
 
+- forks: 앤서블이 병렬 실행할 수를 지정 
+
 
 
 ## 이전 설치 검사
