@@ -181,7 +181,26 @@ emit_error_event 플러그인 API 에서 생성한 오류 레코드에 사용되
 - {X, Y, Z}: X or Y or Z 와는 일치함을 표현  
 - \#{...}: 괄호 안의 문자열을 Ruby 표현식으로 평가함  
 
-## 지원되는 값 유형 
+## 지원되는 값 유형
+- string: 필드가 문자열로 분석됨 (', ")
+- integer: 필드가 정수로 분석됨
+- float: 필드가 float 분석됨
+- size: 필드가 바이트 수로 분석됨  
+    * <Integer>k 는 킬로바이트 
+    * <Integer>m 은 메가바이트
+    * <Integer>g 는 기가바이트 
+    * <Integer>t 는 테라바이트
+    * 기본값은 byte  
+- time: 필드가 시간으로 분석됨 
+    * <Integer>s 는 초 
+    * <Ingeger>m 은 분
+    * <Integer>h 는 시간 
+    * <Integer>d 는 일
+    * 기본 값은 초 이며 0.1 = 100ms 임  
+- array: json 배열로 분석됨 
+    * 표준: ["key1:, "key2"]
+    * 비표준: key1,key2
+- hash: json 객체로 분석됨 
 
-
+## 래퍼런스 
 - [fluetnd config-file](https://docs.fluentd.org/configuration/config-file)
