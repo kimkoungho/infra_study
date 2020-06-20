@@ -55,6 +55,14 @@ $ sudo service rabbitmq-server status
 
 ```
 
+## Management UI 플러그인 활성화
+rabbitmq 는 Management UI 라는 관리도구를 제공하는데, 이 기능을 사용하기 위해서 플러그인을 활성화 해야 함  
+```shell script
+$ rabbitmq-plugins enable rabbitmq_management
+```
+- 추후에 http://host:15672 로 접속하면 WEB UI 에 확인가능하다  
+
+
 ## User 권한 
 rabbitmq 가 최초에 기동되면 / 인 virtual host 와 guest/guest 계정이 생성됨  
 ㄴ 일반적으로 보안 처리를 위해서 guest 계정은 삭제하고 새로운 게정을 만들어 사용  
@@ -99,6 +107,12 @@ $ sudo vi /etc/rabbitmq/rabbitmq.config
 ```
 ㄴ 주의사항은 마지막 . 가 들어가야함 ...
 
+## Virtual Hosts
+RabbitMQ 는 connection, exchange, queue, binding, user, policy 들을 virtual hosts 를 통해서
+논리적인 그룹으로 분리해서 운영할 수 있음  
+vhost 단위로 자원에 대한 권한을 갖음  
+사용자는 전체 권한을 가질수 없고 하나 이상의 vhost 단위로 권한을 부여받음  
+ 
 
 ## 클러스터 구성하기
 ### 노드 이름(식별자) 
