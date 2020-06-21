@@ -134,9 +134,7 @@ ex) node1.messagging.svc.local
 ㄴ FQDN 방식을 사용하기 위해서는 별도의 추가 설정이 필요함
 ㄴ [RabbitMQ 설정 가이드](https://www.rabbitmq.com/configure.html#supported-environment-variables)
   
-개인적으로 /etc/hosts 파일을 수정하는 것은 나중에 서버의 증설, 이전 등에서 굉장히 불편하기 때문에 DNS 레코드 방식이나 FQDN 방식을 추천한다  
-
-### 
+개인적으로 /etc/hosts 파일을 수정하는 것은 나중에 서버의 증설, 이전 등에서 굉장히 불편하기 때문에 DNS 레코드 방식이나 FQDN 방식을 추천한다   
 
 ### 실제 구성 
  
