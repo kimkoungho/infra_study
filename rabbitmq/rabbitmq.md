@@ -39,13 +39,44 @@ RabbitMQ 와 같은 메시지 브로커는 여러 어플리케이션의 중개�
 4. pdf 를 생성하는 worker 는 주기적으로 RabbitMQ 의 Queue 에 메시지를 가져와 pdf 처리
 
 ## AMQP(Advanced Message Queuing Protocol)  
-클라이언트가 메시지 미들웨어 브로커와 통신할 수 있게 해주는 **메시징 프로토콜**  
+클라이언트가 메시지 미들웨어 브로커와 통신할 수 있게 해주는 **메시징 프로토콜**   
+![hello-world-example-routing](images/hello-world-example-routing.png)
 
-producer 에서 메시지를 발행하면 broker 의 Exchange 로 전달되고  
-Binding 규칙에 의해서 Exchange 의 메시지를 다시 Queue 로 전달
-consumer 에서는 queue 에서 해당 메시지를 가져간다
-queue 에서 메시지를   
-ㄴ consumer 에서 메시지를 정상적으로 받았을 경우 broker 에게 통지하고 broker 는 해당 알림을 받았을 경우에만 queue 의 메시지를 삭제함
+- producer 가 메시지를 발행하면 broker 의 Exchange 로 전달 
+- Exchange 는 Binding 규칙에 의해서 메시지를 다시 Queue 로 전달
+- consumer 에서는 queue 에서 해당 메시지를 가져감 
+  
+producer 가 메시지를 전달할 때 메타 데이터를 함께 전달이 가능한데, 해당 메타 데이터를 브로커나 consumer 에서 사용가능함  
+consumer 가 메시지를 가져가는 것이 실패할 수 있기 때문에 RabbitMQ 는 메시지를 바로 삭제하지 않고 대기하다가 consumer 가 메시지 수신이 성공했다고 
+메시지 브로커에서 알림을 준다  
+ 
+### AMQP 엔티티
+RabbitMQ 의 exchange, queue, binding 을 통틀어 AMQP 엔티티라고 함  
+어플리케이션, 관리자는 라우팅 방식을 정의해서 사용 가능  
+
+## Exchange
+Exchange 속성들 
+- Exchange 유형 : Exchange 가 Queue 
+- 이름
+- 내구성: Exchange 는 브로커 재시작 후에도 지속됨
+- 자동 삭제: 마지막 큐가 바인딩 해제되면 exchange 는 삭제됨
+- 파라미터: optional, 플러그인 및 브로커 별 기능에서 사용함
+
+### Exchange 유형 
+- Direct exchange: amq.direct 또는 빈 문자열 
+- Fanout exchange: amq.fanout
+- Topic exchange: amq.topic
+- Headers exchange: amq.match (RabbitMQ 에서 amq.headers)
+
+### Direct exchange
+
+### Fanout exchange
+
+### Topic exchange
+
+### Headers exchange
+
+
   
 
 ## 특징 
