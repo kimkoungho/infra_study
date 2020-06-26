@@ -191,12 +191,13 @@ RabbitMQ 는 채널 레벨의 prefetch 만 지원함
 메시지는 payload 없이 속성만을 포함할 수 도 있음  
 JSON, Thrift, Protocol Buffer, MessagePack 과 같은 직렬화 형식을 사용하여 구조화된 데이터를 직렬화하여 메시지 payload 로 사용함  
 ㄴ 일반적으로 "content-type", "content-encoding" 필드를 이용하여 이 정보를 전달함  
-  
+
+## Exchange Method 
+- exchange.declare
+- exchange.declare-ok
+- exchange.delete
+- exchange.delete-ok
  
-
-   
-
-
 
 
 ## 래퍼런스 
