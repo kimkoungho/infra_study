@@ -23,3 +23,11 @@ origin  https://github.com/user/repo2.git (push)
 
 참고 
 [misone 깃 블로그](http://minsone.github.io/git/github-managing-remotes-changing-a-remotes-url)
+
+## git clone 프로젝트 이름 지정 
+```shell script
+# git clone <Repo> <DestinationDirectory>
+$ git clone https://github.com/user/repos.git my-custom 
+```
+
+[stackoverlfow](https://stackoverflow.com/questions/8570636/change-name-of-folder-when-cloning-from-github)
