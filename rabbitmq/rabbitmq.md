@@ -190,14 +190,44 @@ RabbitMQ 는 채널 레벨의 prefetch 만 지원함
 메시지에는 payload (메시지가 갖고 있는 데이터) 가 있으며 MQ 는 payload 를 불투명한 바이트 배열로 취급하여 payload 를 검사하거나 수정하지 않음    
 메시지는 payload 없이 속성만을 포함할 수 도 있음  
 JSON, Thrift, Protocol Buffer, MessagePack 과 같은 직렬화 형식을 사용하여 구조화된 데이터를 직렬화하여 메시지 payload 로 사용함  
-ㄴ 일반적으로 "content-type", "content-encoding" 필드를 이용하여 이 정보를 전달함  
+ㄴ 일반적으로 "content-type", "content-encoding" 필드를 이용하여 이 정보를 전달함
+
+## Message Acknowledgements
+메시지를 수신했다는 것을 확인하기 위해서 consumer 는 ack 메시지를 MQ 에 전송함  
+MQ 에 ack 가 전달되지 않은 경우 MQ 는 메시지를 다시 큐에 넣음  
 
 ## Exchange Method 
 - exchange.declare
+이 메소드는 client 가 MQ 에게 새 exchange 를 얻기 위해서 사용함  
+![exchange-declare](images/exchange-declare.png)  
+exchange.declare 에서는 여러 매개변수를 전달하며 client 는 exchange 이름, 유형, durable 속성 등을 지정할 수 있음 
+
 - exchange.declare-ok
+exchange.declare 가 성공하면 MQ 는 exchange.declare-ok 메소드로 응답  
+![exchange-declare-ok](images/exchange-declare-ok.png)  
+MQ 는 client 로 채널 번호만을 전달해준다
+  
+- queue.declare, queue.declare-ok 
+consumer 쪽에서 동작하는 queue.declare, queue.declare-ok 도 exchange.declare, exchange.declare-ok 와 유사하게 동작함  
+![queue-declare](images/queue-declare.png)  
+![queue-declare-ok](images/queue-declare-ok.png)   
+
 - exchange.delete
 - exchange.delete-ok
  
+## Connections
+MQ 에 접속하고 있는 커넥션 정보를 나타내며 TCP 를 이용해서 연결함     
+TLS 를 이용해서 연결할 수 도 있음  
+MQ 와 커넥션을 맺고 있는 서버는 정상적인 종료 이벤트를 통해서 연결을 종료해야 함  
+ㄴ ex) TCP 기반 연결이기때문에 consumer 어플리케이션을 강제로 kill 하면 MQ 에 에러 메시지가 출력됨
+     
+ 
+## Channel
+실제 MQ 와 어플리케이션 (publisher, consumer) 사이에는 여려 커넥션이 필요한데, 여러 커넥션을 관리하기 위해서 채널을 사용하고 있음  
+각 어플리케이션과 MQ 는 채널 ID 를 이용하여 채널을 식별하고 통신함  
+
+## Virtual Hosts
+MQ 에 가상의 격리된 환경을 제공하기 위한 기술로 가상 호스트 별로 사용자 그룹, exchange, queue 등을 생성할 수 있음  
 
 
 ## 래퍼런스 
